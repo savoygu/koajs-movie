@@ -1,0 +1,43 @@
+{
+  "name": "movie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "koa": "^2.4.1",
+    "koa-body": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-compress": "^2.0.0",
+    "koa-connect": "^2.0.0",
+    "koa-convert": "^1.2.0",
+    "koa-cors": "^0.0.16",
+    "koa-mount": "^3.0.0",
+    "koa-pug": "^3.0.0-2",
+    "koa-router": "^7.3.0",
+    "koa-session": "^5.5.1",
+    "koa-static": "^4.0.2",
+    "moment": "^2.19.2",
+    "mongoose": "^4.13.2",
+    "pug": "^2.0.0-rc.4",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.6.0",
+    "cross-env": "^5.1.1",
+    "grunt": "^1.0.1",
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-nodemon": "^0.4.2",
+    "grunt-reload": "^0.2.0",
+    "koa-liveload": "^0.0.2",
+    "koa-livereload": "^0.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development grunt",
+    "filemap": "filemap -i node_modules libs .git .idea upload"
+  },
+  "author": "",
+  "license": "MIT"
+}
