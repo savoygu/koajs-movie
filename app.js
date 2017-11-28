@@ -6,29 +6,30 @@ const compress = require('koa-compress') // 传输压缩
 const mount = require('koa-mount') // 路由挂载
 const convert = require('koa-convert') // 封装中间件
 const mongoose = require('mongoose')
-const Pug = require('koa-pug')
-const serve = require('koa-static')
-const session = require('koa-session')
-const moment = require('moment')
-const livereload = require('koa-livereload')
+const Pug = require('koa-pug') // 模板引擎
+const serve = require('koa-static') // 静态资源
+const session = require('koa-session') // session
+const moment = require('moment') // 时间库
 
-const config = require('./config')
-const router = require('./config/routes')
+const config = require('./config') // 项目配置
+const router = require('./config/routes') // 路由
 
 const app = new Koa()
 const pug = new Pug({
   app,
-  viewPath: 'app/views/pages',
-  pretty: true,
-  locals: {
+  viewPath: 'app/views/pages', // 模板路径
+  pretty: true, // 格式化
+  locals: { // 全局变量
     moment
   }
 })
+
 
 app.use(serve(path.join(__dirname, '/public')))
 app.use(convert(bodyparser()))
 app.use(convert(compress()))
 app.use(convert(cors()))
+
 app.keys = ['secret is only a secret']
 app.use(session({
   key: 'movie-koa2', /** (string) cookie key (default is koa:sess) */
@@ -54,18 +55,10 @@ app.on('error', (err, ctx) => {
   console.log('error: ', err)
 })
 
-// 实时加载
+// 开发配置
 if (process.env.NODE_ENV === 'development') {
   // 开发配置
   mongoose.set('debug', true)
-
-  var liveReloadPort = process.env.LR_PORT || 35279
-  var excludeList = ['.woff', '.flv']
-
-  app.use(livereload({
-    port: liveReloadPort,
-    excludes: excludeList
-  }))
 }
 
 // 挂在路由
@@ -83,6 +76,7 @@ function listen () {
   })
 }
 
+// 数据库连接
 function connect () {
   mongoose.Promise = global.Promise // resolve a bug that mpromise is deprecated,plug in your own promise library instead
   return mongoose.connect('mongodb://' + config.database.host + '/' + config.database.db, {

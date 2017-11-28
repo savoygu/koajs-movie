@@ -2,9 +2,20 @@
 
 ## 迁移过程
 
-comming soon
-...
+| 描述        | Express4        | Koa2          |
+| ------------- | ------------- |:-------------:|
+| 参数解析      | body-parser      | [koa-bodyparser](https://github.com/koajs/bodyparser) |
+| 静态资源     | serve-static      | [koa-static](https://github.com/koajs/static)     |
+| session | express-session | [koa-session](https://github.com/koajs/session)      |
+| 文件上传 | connect-multiparty | [koa-body](https://github.com/dlau/koa-body)      |
 
+关于路由部分参考：[koa-router](https://github.com/alexmingoia/koa-router)
+
+关于模板引擎部分参考：[koa-pug](https://github.com/chrisyip/koa-pug) 和 [koa-views](https://github.com/queckezz/koa-views)
+
+关于`app.locals`部分参考：[项目代码1](https://github.com/savoygu/movie-koa2/blob/master/config/routes.js#L7) 和 [项目代码2](https://github.com/savoygu/movie-koa2/blob/master/app.js#L23-L25)（说明：express4 中 `app.locals` 在 koa2 中的替换方案为 `ctx.state`）
+
+...
 
 ## 项目布局
 生成方式：参考文档 [https://github.com/jrainlau/filemap](https://github.com/jrainlau/filemap)

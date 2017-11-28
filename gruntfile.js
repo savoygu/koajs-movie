@@ -4,7 +4,6 @@ module.exports = function (grunt) {
     watch: {
       pug: {
         files: ['app/views/**'],
-        tasks: ['livereload'],
         options: {
           nospawn: true,
           interrupt: false,
@@ -15,22 +14,12 @@ module.exports = function (grunt) {
       js: {
         files: ['public/js/**', 'app/models/**/*.js', 'app/schemas/**/*.js'],
         // tasks: ['jshint'],
-        tasks: ['livereload'],
         options: {
           nospawn: true,
           interrupt: false,
           debounceDelay: 250,
           // livereload: true
         }
-      }
-    },
-
-    reload: {
-      port: 35279,
-      liveReload: {},
-      proxy: {
-        host: 'localhost',
-        port: '3000'
       }
     },
 
@@ -61,11 +50,9 @@ module.exports = function (grunt) {
   })
 
   grunt.loadNpmTasks('grunt-contrib-watch')
-  grunt.loadNpmTasks("grunt-reload")
   grunt.loadNpmTasks('grunt-nodemon')
   grunt.loadNpmTasks('grunt-concurrent')
 
   grunt.option('force', true)
   grunt.registerTask('default', ['concurrent'])
-  grunt.registerTask('livereload', ['reload', 'watch'])
 }
