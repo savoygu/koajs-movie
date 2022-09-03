@@ -17,7 +17,7 @@ exports.detail = async function (ctx) {
       .populate('from', 'name')
       .populate('reply.from reply.to', 'name')
       .exec()
-    ctx.render('movie/detail', {
+    await ctx.render('movie/detail', {
       title: '电影详情页——' + movie.title,
       movie: movie,
       comments: comments
@@ -31,7 +31,7 @@ exports.detail = async function (ctx) {
 exports.new = async function (ctx) {
   try {
     let categories = await Category.find({})
-    ctx.render('admin/movie_add', {
+    await ctx.render('admin/movie_add', {
       title: '电影后台录入页',
       categories: categories,
       movie: {}
@@ -48,7 +48,7 @@ exports.update = async function (ctx) {
     if (id) {
       let movie = await Movie.findById(id)
       let categories = await Category.find({})
-      ctx.render('admin/movie_add', {
+      await ctx.render('admin/movie_add', {
         title: '电影后台更新页',
         movie: movie,
         categories: categories
@@ -138,7 +138,7 @@ exports.save = async function (ctx) {
 exports.list = async function (ctx) {
   try {
     let movies = await Movie.fetch()
-    ctx.render('admin/movie_list', {
+    await ctx.render('admin/movie_list', {
       title: '电影列表页',
       movies: movies
     })

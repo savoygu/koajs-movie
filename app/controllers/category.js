@@ -2,8 +2,8 @@ const _ = require('underscore')
 const Category = require('../models/category')
 
 // 新增电影分类(回显数据)
-exports.new = function (ctx) {
-  ctx.render('admin/category_add', {
+exports.new = async function (ctx) {
+  await ctx.render('admin/category_add', {
     title: '电影后台分类录入页',
     category: {
       name: ''
@@ -17,7 +17,7 @@ exports.update = async function (ctx) {
   try {
     if (id) {
       let category = await Category.findById(id)
-      ctx.render('admin/category_add', {
+      await ctx.render('admin/category_add', {
         title: '电影后台分类更新页',
         category: category
       })
@@ -54,8 +54,8 @@ exports.save = async function (ctx) {
 // 电影分类列表
 exports.list = async function (ctx) {
   try {
-    let categories = await Category.fetch()
-    return ctx.render('admin/category_list', {
+    const categories = await Category.fetch()
+    await ctx.render('admin/category_list', {
       title: '电影分类列表页',
       categories: categories
     })

@@ -1,14 +1,14 @@
 const User = require('../models/user')
 
 // 用户注册
-exports.showSignup = function (ctx) {
-  ctx.render('user/signup', {
+exports.showSignup = async function (ctx) {
+  await ctx.render('user/signup', {
     title: '注册页面'
   })
 }
 
-exports.showSignin = function (ctx) {
-  ctx.render('user/signin', {
+exports.showSignin = async function (ctx) {
+  await ctx.render('user/signin', {
     title: '登录页面'
   })
 }
@@ -69,7 +69,7 @@ exports.logout = function (ctx) {
 exports.list = async function (ctx) {
   try {
     let users = await User.fetch()
-    ctx.render('admin/user_list', {
+    await ctx.render('admin/user_list', {
       title: '用户列表页',
       users: users
     })

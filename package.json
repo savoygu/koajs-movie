@@ -6,24 +6,24 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "koa": "^2.4.1",
-    "koa-body": "^2.5.0",
+    "koa-body": "^5.0.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
     "koa-convert": "^1.2.0",
     "koa-cors": "^0.0.16",
     "koa-mount": "^3.0.0",
-    "koa-pug": "^3.0.0-2",
-    "koa-router": "^7.3.0",
+    "koa-pug": "^5.0.0",
+    "koa-router": "^12.0.0",
     "koa-session": "^5.5.1",
     "koa-static": "^4.0.2",
-    "moment": "^2.19.2",
-    "mongoose": "^4.13.2",
+    "moment": "^2.29.4",
+    "mongoose": "^6.5.4",
     "pug": "^2.0.0-rc.4",
-    "underscore": "^1.8.3"
+    "underscore": "^1.13.4"
   },
   "devDependencies": {
     "cross-env": "^5.1.1",
-    "grunt": "^1.0.1",
+    "grunt": "^1.5.3",
     "grunt-concurrent": "^2.3.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-nodemon": "^0.4.2"

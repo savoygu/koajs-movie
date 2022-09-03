@@ -7,7 +7,7 @@ exports.index = async function (ctx) {
       .find({})
       .populate({path: 'movies', options: {limit: 20}})
       .exec()
-    ctx.render('index', {
+    await ctx.render('index', {
       title: '电影首页',
       categories: categories
     })
@@ -36,7 +36,7 @@ exports.search = async function (ctx) {
       const movies = category.movies || []
       const results = movies.slice(index, index + count)
 
-      ctx.render('movie/results', {
+      await ctx.render('movie/results', {
         title: '电影结果列表页面',
         keyword: category.name,
         currentPage: page + 1,
@@ -50,7 +50,7 @@ exports.search = async function (ctx) {
         .exec()
       const results = movies.slice(index, index + count)
 
-      ctx.render('movie/results', {
+      await ctx.render('movie/results', {
         title: '电影结果列表页面',
         keyword: q,
         currentPage: page + 1,

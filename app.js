@@ -17,8 +17,8 @@ const router = require('./config/routes') // 路由
 const app = new Koa()
 const pug = new Pug({
   app,
-  viewPath: 'app/views/pages', // 模板路径
-  pretty: true, // 格式化
+  viewPath: path.resolve(__dirname, './app/views/pages'), // 模板路径
+  // pretty: true, // 格式化
   locals: { // 全局变量
     moment
   }
@@ -66,9 +66,6 @@ if (process.env.NODE_ENV === 'development') {
 app.use(mount('/', router))
 
 connect()
-  .on('error', console.log)
-  .on('disconnected', connect)
-  .once('open', listen)
 
 function listen () {
   app.listen(config.port, () => {
@@ -78,8 +75,15 @@ function listen () {
 
 // 数据库连接
 function connect () {
-  mongoose.Promise = global.Promise // resolve a bug that mpromise is deprecated,plug in your own promise library instead
-  return mongoose.connect('mongodb://' + config.database.host + '/' + config.database.db, {
-    useMongoClient: true
-  })
+  mongoose.connection.on('error', console.log)
+    .on('disconnected', connect)
+    .once('open', listen)
+
+  mongoose.connect('mongodb://' + config.database.host + '/' + config.database.db)
+    .catch(console.error.bind(console, 'connect error:'))
+
+  // mongoose.Promise = global.Promise // resolve a bug that mpromise is deprecated,plug in your own promise library instead
+  // return mongoose.connect('mongodb://' + config.database.host + '/' + config.database.db, {
+  //   useMongoClient: true
+  // })
 }
