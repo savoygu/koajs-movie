@@ -17,6 +17,21 @@
 
 ...
 
+## 运行环境
+
+请先安装 Mongodb 数据库
+
+## 项目运行
+
+```
+# 安装依赖
+bower install
+npm install
+
+# 开发 (http://localhost:3000)
+npm run dev
+```
+
 ## 项目布局
 生成方式：参考文档 [https://github.com/jrainlau/filemap](https://github.com/jrainlau/filemap)
 ```bash
@@ -85,15 +100,4 @@ npm run filemap
 |__ package.json                              // npm 项目配置
 |__ package-lock.json                         // lock 依赖
 |__ README.md                                 // README
-```
-
-## 项目运行
-
-```
-# 安装依赖
-bower install
-npm install
-
-# 开发 (http://localhost:3000)
-npm run dev
 ```
