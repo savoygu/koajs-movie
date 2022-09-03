@@ -1,5 +1,4 @@
 module.exports = function (grunt) {
-
   grunt.initConfig({
     watch: {
       pug: {
@@ -7,7 +6,7 @@ module.exports = function (grunt) {
         options: {
           nospawn: true,
           interrupt: false,
-          debounceDelay: 250,
+          debounceDelay: 250
           // livereload: true
         }
       },
@@ -17,7 +16,7 @@ module.exports = function (grunt) {
         options: {
           nospawn: true,
           interrupt: false,
-          debounceDelay: 250,
+          debounceDelay: 250
           // livereload: true
         }
       }

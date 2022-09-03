@@ -9,18 +9,18 @@ const path = require('path')
 exports.detail = async function (ctx) {
   const id = ctx.params.id
   try {
-    let movie = await Movie.findById(id)
-    await Movie.update({_id: id}, {$inc: {pv: 1}})
+    const movie = await Movie.findById(id)
+    await Movie.update({ _id: id }, { $inc: { pv: 1 } })
 
-    let comments = await Comment
-      .find({movie: id})
+    const comments = await Comment
+      .find({ movie: id })
       .populate('from', 'name')
       .populate('reply.from reply.to', 'name')
       .exec()
     await ctx.render('movie/detail', {
       title: '电影详情页——' + movie.title,
-      movie: movie,
-      comments: comments
+      movie,
+      comments
     })
   } catch (e) {
     console.log(e)
@@ -30,10 +30,10 @@ exports.detail = async function (ctx) {
 // 新增电影(回显数据)
 exports.new = async function (ctx) {
   try {
-    let categories = await Category.find({})
+    const categories = await Category.find({})
     await ctx.render('admin/movie_add', {
       title: '电影后台录入页',
-      categories: categories,
+      categories,
       movie: {}
     })
   } catch (e) {
@@ -46,12 +46,12 @@ exports.update = async function (ctx) {
   const id = ctx.params.id
   try {
     if (id) {
-      let movie = await Movie.findById(id)
-      let categories = await Category.find({})
+      const movie = await Movie.findById(id)
+      const categories = await Category.find({})
       await ctx.render('admin/movie_add', {
         title: '电影后台更新页',
-        movie: movie,
-        categories: categories
+        movie,
+        categories
       })
     }
   } catch (e) {
@@ -95,20 +95,20 @@ exports.save = async function (ctx) {
     }
 
     if (id) {
-      let oldMovie = await Movie.findById(id)
+      const oldMovie = await Movie.findById(id)
       _movie = _.extend(oldMovie, movie)
       const newMovie = await _movie.save()
 
       const oldCategoryId = movie.oldCategory
       const categoryId = movie.category
       if (categoryId !== oldCategoryId) { // 更改类别，需要针对两个类别对里面的电影进行操作（增加，删除）
-        await Category.findByIdAndUpdate({_id: categoryId}, {$addToSet: {movies: newMovie._id}})
-        await Category.findByIdAndUpdate({_id: oldCategoryId}, {$pull: {movies: newMovie._id}})
+        await Category.findByIdAndUpdate({ _id: categoryId }, { $addToSet: { movies: newMovie._id } })
+        await Category.findByIdAndUpdate({ _id: oldCategoryId }, { $pull: { movies: newMovie._id } })
       }
       ctx.redirect('/movie/' + movie._id)
     } else {
       _movie = new Movie(movie)
-      let newMovie = await _movie.save()
+      const newMovie = await _movie.save()
 
       const categoryId = _movie.category
       const categoryName = movie.categoryName
@@ -137,10 +137,10 @@ exports.save = async function (ctx) {
 // 电影列表
 exports.list = async function (ctx) {
   try {
-    let movies = await Movie.fetch()
+    const movies = await Movie.fetch()
     await ctx.render('admin/movie_list', {
       title: '电影列表页',
-      movies: movies
+      movies
     })
   } catch (e) {
     console.log(e)
@@ -150,15 +150,15 @@ exports.list = async function (ctx) {
 // 删除电影
 exports.del = async function (ctx) {
   const id = ctx.request.query.id
-  let body = {success: 1}
+  let body = { success: 1 }
 
   try {
     if (id) {
-      await Movie.remove({_id: id})
+      await Movie.remove({ _id: id })
     }
   } catch (e) {
     console.log(e)
-    body = {success: 0}
+    body = { success: 0 }
   } finally {
     ctx.body = body
   }

@@ -13,17 +13,16 @@ exports.showSignin = async function (ctx) {
   })
 }
 
-
 // 用户注册
 exports.signup = async function (ctx) {
   const _user = ctx.request.body.user
 
   try {
-    let oldUser = await User.findOne({name: _user.name})
+    const oldUser = await User.findOne({ name: _user.name })
     if (oldUser) {
       return ctx.redirect('/signin')
     } else {
-      let user = new User(_user)
+      const user = new User(_user)
 
       await user.save()
       return ctx.redirect('/')
@@ -40,12 +39,12 @@ exports.signin = async function (ctx) {
   const password = _user.password
 
   try {
-    let user = await User.findOne({name: name})
+    const user = await User.findOne({ name })
     if (!user) {
       return ctx.redirect('/signup')
     }
 
-    let isMatch = await user.comparePassword(password)
+    const isMatch = await user.comparePassword(password)
     if (isMatch) {
       ctx.session.user = user
 
@@ -68,10 +67,10 @@ exports.logout = function (ctx) {
 // 用户列表
 exports.list = async function (ctx) {
   try {
-    let users = await User.fetch()
+    const users = await User.fetch()
     await ctx.render('admin/user_list', {
       title: '用户列表页',
-      users: users
+      users
     })
   } catch (e) {
     console.log(e)

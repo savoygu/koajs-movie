@@ -8,7 +8,7 @@ exports.new = async function (ctx) {
     category: {
       name: ''
     }
-  });
+  })
 }
 
 // 更新电影分类(回显数据)
@@ -16,10 +16,10 @@ exports.update = async function (ctx) {
   const id = ctx.params.id
   try {
     if (id) {
-      let category = await Category.findById(id)
+      const category = await Category.findById(id)
       await ctx.render('admin/category_add', {
         title: '电影后台分类更新页',
-        category: category
+        category
       })
     }
   } catch (e) {
@@ -35,7 +35,7 @@ exports.save = async function (ctx) {
 
   try {
     if (id) {
-      let oldCategory = await Category.findById(id)
+      const oldCategory = await Category.findById(id)
       _category = _.extend(oldCategory, category)
       await _category.save()
 
@@ -57,26 +57,25 @@ exports.list = async function (ctx) {
     const categories = await Category.fetch()
     await ctx.render('admin/category_list', {
       title: '电影分类列表页',
-      categories: categories
+      categories
     })
   } catch (e) {
     console.log(e)
   }
 }
 
-
 // 删除分类
 exports.del = async function (ctx) {
   const id = ctx.request.query.id
-  let body = {success: 1}
+  let body = { success: 1 }
 
   try {
     if (id) {
-      await Category.remove({_id: id})
+      await Category.remove({ _id: id })
     }
   } catch (e) {
     console.log(e)
-    body = {success: 0}
+    body = { success: 0 }
   } finally {
     ctx.body = body
   }

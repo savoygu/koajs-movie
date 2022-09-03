@@ -15,6 +15,7 @@ const config = require('./config') // 项目配置
 const router = require('./config/routes') // 路由
 
 const app = new Koa()
+// eslint-disable-next-line no-unused-vars
 const pug = new Pug({
   app,
   viewPath: path.resolve(__dirname, './app/views/pages'), // 模板路径
@@ -23,7 +24,6 @@ const pug = new Pug({
     moment
   }
 })
-
 
 app.use(serve(path.join(__dirname, '/public')))
 app.use(convert(bodyparser()))
@@ -40,13 +40,13 @@ app.use(session({
   overwrite: true, /** (boolean) can overwrite or not (default true) */
   httpOnly: true, /** (boolean) httpOnly or not (default true) */
   signed: true, /** (boolean) signed or not (default true) */
-  rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. default is false **/
+  rolling: false /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. default is false **/
 }, app))
 
 app.use(async (ctx, next) => {
-  let start = new Date
+  const start = new Date()
   await next()
-  let ms = new Date - start
+  const ms = new Date() - start
   console.log(`${ctx.method}, ${ctx.url}, ${ms}`)
 })
 

@@ -4,7 +4,7 @@ const ObjectId = Schema.Types.ObjectId
 
 const CategorySchema = new Schema({
   name: String,
-  movies: [{type: ObjectId, ref: 'Movie'}],
+  movies: [{ type: ObjectId, ref: 'Movie' }],
   meta: {
     createAt: {
       type: Date,
@@ -36,7 +36,7 @@ CategorySchema.statics = {
   },
   findById: function (id) {
     return this
-      .findOne({_id: id})
+      .findOne({ _id: id })
       .exec()
   }
 }

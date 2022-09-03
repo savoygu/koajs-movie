@@ -1,9 +1,9 @@
 $(function () {
   function remove (element, url) {
     $(element).click(function (e) {
-      var target = $(e.target)
-      var id = target.data('id')
-      var tr = $('.item-id-' + id)
+      const target = $(e.target)
+      const id = target.data('id')
+      const tr = $('.item-id-' + id)
 
       $.ajax({
         type: 'DELETE',
@@ -23,8 +23,8 @@ $(function () {
   remove('.js-category-del', '/admin/category')
 
   $('#douban').blur(function () {
-    var douban = $(this)
-    var id = douban.val()
+    const douban = $(this)
+    const id = douban.val()
 
     if (id) {
       $.ajax({

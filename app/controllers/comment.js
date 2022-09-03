@@ -1,4 +1,3 @@
-const _ = require('underscore')
 const Comment = require('../models/comment')
 
 // 新增电影 / 更新电影

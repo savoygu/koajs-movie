@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
 })
 
 UserSchema.pre('save', function (next) {
-  var user = this
+  const user = this
   if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now()
   } else {
@@ -62,7 +62,7 @@ UserSchema.statics = {
   },
   findById: function (id) {
     return this
-      .findOne({_id: id})
+      .findOne({ _id: id })
       .exec()
   }
 }

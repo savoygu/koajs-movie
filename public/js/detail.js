@@ -1,8 +1,8 @@
 $(function () {
   $('.comment').click(function (e) {
-    var target = $(this)
-    var toId = target.data('tid')
-    var commentId = target.data('cid')
+    const target = $(this)
+    const toId = target.data('tid')
+    const commentId = target.data('cid')
     console.log(target)
     console.log(commentId)
 
