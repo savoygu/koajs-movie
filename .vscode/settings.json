@@ -1,4 +1,5 @@
 {
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "typescript.validate.enable": false,
   "javascript.validate.enable": false
 }
