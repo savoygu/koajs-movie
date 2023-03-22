@@ -1,29 +1,29 @@
-# movie-koa2 电影基于koa2
+# 基于 koa2 + mongodb 的电影网站
 
-## 迁移过程
+## 从 [expressjs-movie](https://github.com/savoygu/expressjs-movie) 迁移过程
 
-| 描述        | Express4        | Koa2          |
-| ------------- | ------------- |:-------------:|
-| 参数解析      | body-parser      | [koa-bodyparser](https://github.com/koajs/bodyparser) |
-| 静态资源     | serve-static      | [koa-static](https://github.com/koajs/static)     |
-| session | express-session | [koa-session](https://github.com/koajs/session)      |
-| 文件上传 | connect-multiparty | [koa-body](https://github.com/dlau/koa-body)      |
+**中间件：**
 
-关于路由部分参考：[koa-router](https://github.com/alexmingoia/koa-router)
+| 描述     | Express4           |                         Koa2                          |
+| -------- | ------------------ | :---------------------------------------------------: |
+| 参数解析 | body-parser        | [koa-bodyparser](https://github.com/koajs/bodyparser) |
+| 静态资源 | serve-static       |     [koa-static](https://github.com/koajs/static)     |
+| session  | express-session    |    [koa-session](https://github.com/koajs/session)    |
+| 文件上传 | connect-multiparty |     [koa-body](https://github.com/dlau/koa-body)      |
 
-关于模板引擎部分参考：[koa-pug](https://github.com/chrisyip/koa-pug) 和 [koa-views](https://github.com/queckezz/koa-views)
+路由：[koa-router](https://github.com/alexmingoia/koa-router)
 
-关于`app.locals`部分参考：[项目代码1](https://github.com/savoygu/movie-koa2/blob/master/config/routes.js#L7) 和 [项目代码2](https://github.com/savoygu/movie-koa2/blob/master/app.js#L23-L25)（说明：express4 中 `app.locals` 在 koa2 中的替换方案为 `ctx.state`）
+模板引擎：[koa-pug](https://github.com/chrisyip/koa-pug) 和 [koa-views](https://github.com/queckezz/koa-views)
 
-...
+`app.locals`：参考 [项目代码 1](https://github.com/savoygu/koajs-movie/blob/master/config/routes.js#L7) 和 [项目代码 2](https://github.com/savoygu/koajs-movie/blob/master/app.js#L23-L25)
 
 ## 运行环境
 
-请先安装 Mongodb 数据库
+- Mongodb 数据库
 
 ## 项目运行
 
-```
+```bash
 # 安装依赖
 bower install
 npm install
@@ -33,14 +33,16 @@ npm run dev
 ```
 
 ## 项目布局
-生成方式：参考文档 [https://github.com/jrainlau/filemap](https://github.com/jrainlau/filemap)
+
+生成方式：[参考文档](https://github.com/jrainlau/filemap)
+
 ```bash
 npm run filemap
 ```
 
 目录改动： 路由(app/routes) 和 视图(app/views)
 
-```
+```bash
 |__ app
   |__ controllers                             // 控制层
     |__ category.js                              // 电影分类（列表，新增，更新，删除）
