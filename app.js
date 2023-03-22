@@ -79,6 +79,7 @@ function connect () {
     .on('disconnected', connect)
     .once('open', listen)
 
+  mongoose.set('strictQuery', true)
   mongoose.connect('mongodb://' + config.database.host + '/' + config.database.db)
     .catch(console.error.bind(console, 'connect error:'))
 
